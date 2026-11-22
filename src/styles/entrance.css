@@ -1,0 +1,982 @@
+/* ============================================================
+   SCENE 01 — THE ROYAL ENTRANCE
+   SCENE 02 — THE GRAND REVEAL
+   ============================================================ */
+
+.gate-scene {
+  height: 100vh;
+  height: 100svh;
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
+  background:
+    radial-gradient(ellipse 70% 55% at 50% 38%, rgba(126, 52, 67, 0.55), transparent 62%),
+    radial-gradient(ellipse 90% 50% at 50% 112%, rgba(197, 164, 109, 0.14), transparent 60%),
+    linear-gradient(178deg, #3a1120 0%, #4d1826 46%, #33101a 100%);
+  color: var(--ivory);
+}
+
+/* ---------- the garden waiting behind the doors ---------- */
+
+.reveal-field {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  overflow: hidden;
+  opacity: 0;
+  transform: scale(1.09);
+  transition:
+    opacity 1.65s var(--ease-silk) 0.15s,
+    transform 4.2s var(--ease-silk) 0.1s;
+}
+
+.is-revealed .reveal-field {
+  opacity: 1;
+  transform: scale(1.015);
+}
+
+.reveal-field__img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 44%;
+  filter: saturate(0.94) brightness(0.82);
+}
+
+.reveal-field__veil {
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse 68% 58% at 50% 44%, rgba(34, 10, 17, 0.44) 0%, rgba(34, 10, 17, 0.6) 58%, rgba(34, 10, 17, 0.8) 100%),
+    linear-gradient(180deg, rgba(30, 9, 16, 0.7) 0%, rgba(30, 9, 16, 0.08) 24%, rgba(30, 9, 16, 0.04) 58%, rgba(30, 9, 16, 0.74) 100%);
+}
+
+.reveal-field__vignette {
+  position: absolute;
+  inset: 0;
+  box-shadow: inset 0 0 22vw rgba(18, 5, 10, 0.55);
+  pointer-events: none;
+}
+
+/* ---------- the gate itself ---------- */
+
+.gate {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  opacity: 1;
+  transition:
+    opacity 1.05s var(--ease-silk) 0.1s,
+    visibility 0s linear 0s;
+}
+
+.is-revealed .gate {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transition:
+    opacity 1.15s var(--ease-silk) 0.08s,
+    visibility 0s linear 1.3s;
+}
+
+.gate__texture {
+  position: absolute;
+  inset: 0;
+  background-image: var(--jali), var(--noise);
+  background-size: 148px 148px, 160px 160px;
+  opacity: 0.16;
+  mix-blend-mode: soft-light;
+  mask-image: radial-gradient(ellipse 75% 70% at 50% 48%, rgba(0, 0, 0, 0.9), transparent 82%);
+  -webkit-mask-image: radial-gradient(ellipse 75% 70% at 50% 48%, rgba(0, 0, 0, 0.9), transparent 82%);
+  pointer-events: none;
+}
+
+.gate__niche {
+  position: absolute;
+  left: 50%;
+  top: clamp(18px, 4vh, 56px);
+  transform: translateX(-50%);
+  width: min(94vw, 780px);
+  height: calc(100% - clamp(50px, 10vh, 120px));
+  border: 1px solid rgba(197, 164, 109, 0.11);
+  border-bottom: 0;
+  border-radius: 50% 50% 0 0 / 27% 27% 0 0;
+  background: radial-gradient(ellipse 62% 46% at 50% 0%, rgba(244, 235, 221, 0.055), transparent 66%);
+  box-shadow: inset 0 0 120px rgba(20, 5, 10, 0.18);
+  pointer-events: none;
+}
+
+.gate__niche::before {
+  content: '';
+  position: absolute;
+  inset: 14px 14px 0;
+  border: 1px solid rgba(197, 164, 109, 0.07);
+  border-bottom: 0;
+  border-radius: 50% 50% 0 0 / 27% 27% 0 0;
+}
+
+.gate__vignette {
+  position: absolute;
+  inset: 0;
+  z-index: 9;
+  pointer-events: none;
+  background:
+    radial-gradient(ellipse 80% 74% at 50% 44%, transparent 42%, rgba(22, 6, 11, 0.52) 100%),
+    linear-gradient(180deg, rgba(22, 6, 11, 0.32) 0%, transparent 18%, transparent 80%, rgba(22, 6, 11, 0.6) 100%);
+}
+
+.gate__corner {
+  position: absolute;
+  z-index: 1;
+  width: clamp(140px, 22vw, 300px);
+  height: auto;
+  color: var(--gold);
+  opacity: 0.34;
+  pointer-events: none;
+  --corner-line: #c5a46d;
+  --corner-leaf: #5d6e54;
+  --corner-flower: #e9d9bc;
+  --corner-rose: #a55f68;
+  --corner-rose-deep: #8c4a55;
+  filter: drop-shadow(0 0 24px rgba(15, 4, 8, 0.3));
+}
+
+.gate__corner--tl {
+  top: -8px;
+  left: -8px;
+}
+
+.gate__corner--tr {
+  top: -8px;
+  right: -8px;
+  transform: scaleX(-1);
+}
+
+.gate__corner--bl {
+  bottom: -8px;
+  left: -8px;
+  transform: scaleY(-1);
+}
+
+.gate__corner--br {
+  bottom: -8px;
+  right: -8px;
+  transform: scale(-1, -1);
+}
+
+.gate__inner {
+  position: relative;
+  z-index: 2;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding:
+    calc(clamp(18px, 3.4vh, 38px) + env(safe-area-inset-top))
+    clamp(16px, 4vw, 52px)
+    calc(clamp(16px, 2.8vh, 30px) + env(safe-area-inset-bottom));
+}
+
+/* ---------- ceremonial heading ---------- */
+
+.gate__head {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: clamp(5px, 1vh, 10px);
+  text-align: center;
+  flex: 0 0 auto;
+}
+
+.gate__lotus {
+  width: clamp(36px, 4.6vw, 52px);
+  height: auto;
+  color: var(--gold);
+  opacity: 0.88;
+  filter: drop-shadow(0 0 14px rgba(197, 164, 109, 0.25));
+}
+
+.gate__blessing {
+  font-family: var(--font-hindi);
+  font-size: clamp(0.82rem, 1.5vw, 1rem);
+  line-height: 1.4;
+  letter-spacing: 0.07em;
+  color: var(--gold-pale);
+  opacity: 0.92;
+}
+
+.gate__greeting {
+  font-family: var(--font-ceremonial);
+  font-size: clamp(0.6rem, 0.48rem + 0.36vw, 0.78rem);
+  letter-spacing: 0.44em;
+  text-indent: 0.44em;
+  text-transform: uppercase;
+  color: rgba(244, 235, 221, 0.92);
+}
+
+.gate__head::after {
+  content: '';
+  width: 64px;
+  height: 1px;
+  margin-top: 3px;
+  background: linear-gradient(90deg, transparent, rgba(197, 164, 109, 0.6), transparent);
+}
+
+/* ---------- the doorway ---------- */
+
+.portal-wrap {
+  position: relative;
+  flex: 1 1 auto;
+  width: 100%;
+  min-height: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.portal {
+  position: relative;
+  width: min(88vw, calc(56svh * 0.785), 452px);
+  aspect-ratio: 0.785;
+  margin-top: clamp(20px, 6vh, 58px);
+  transform-style: preserve-3d;
+  z-index: 2;
+}
+
+.portal::before {
+  content: '';
+  position: absolute;
+  inset: -9px;
+  border: 1px solid rgba(197, 164, 109, 0.42);
+  box-shadow:
+    0 0 0 1px rgba(197, 164, 109, 0.1),
+    0 30px 80px -20px rgba(8, 2, 4, 0.65),
+    inset 0 0 40px rgba(0, 0, 0, 0.35);
+  pointer-events: none;
+  z-index: 12;
+}
+
+.portal::after {
+  content: '';
+  position: absolute;
+  inset: -17px;
+  border: 1px solid rgba(197, 164, 109, 0.14);
+  pointer-events: none;
+  z-index: 12;
+}
+
+.portal__garden {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  background: #2b0d15;
+}
+
+.portal__garden img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 46%;
+  transform: scale(1.16);
+  filter: brightness(0.48) saturate(0.95);
+  transition:
+    filter 2.3s var(--ease-silk),
+    transform 3.4s var(--ease-silk);
+}
+
+.is-opening .portal__garden img,
+.is-revealed .portal__garden img {
+  filter: brightness(0.94) saturate(1);
+  transform: scale(1.055);
+}
+
+.portal__shade {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  pointer-events: none;
+  background:
+    linear-gradient(90deg, rgba(18, 5, 10, 0.55), transparent 14%, transparent 86%, rgba(18, 5, 10, 0.55)),
+    linear-gradient(180deg, rgba(18, 5, 10, 0.4), transparent 22%);
+  transition: opacity 1.8s var(--ease-silk);
+}
+
+.is-opening .portal__shade {
+  opacity: 0.35;
+}
+
+.doorway {
+  position: absolute;
+  inset: 0;
+  z-index: 3;
+  perspective: 1600px;
+  perspective-origin: 50% 48%;
+}
+
+.door {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 50.05%;
+  backface-visibility: hidden;
+  transform-style: preserve-3d;
+  will-change: transform;
+  box-shadow: inset 0 0 44px rgba(12, 3, 6, 0.55);
+}
+
+.door--left {
+  left: 0;
+  transform-origin: left center;
+}
+
+.door--right {
+  right: 0;
+  transform-origin: right center;
+}
+
+.door__art {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.door--right .door__art {
+  transform: scaleX(-1);
+}
+
+.portal__spill {
+  position: absolute;
+  inset: -12%;
+  z-index: 6;
+  pointer-events: none;
+  opacity: 0;
+  background: radial-gradient(ellipse 52% 48% at 50% 46%, rgba(255, 241, 212, 0.4), rgba(226, 190, 132, 0.14) 42%, transparent 70%);
+  mix-blend-mode: screen;
+  transition: opacity 1.9s var(--ease-silk);
+}
+
+.is-opening .portal__spill {
+  opacity: 0.7;
+}
+
+.is-revealed .portal__spill {
+  opacity: 0.15;
+}
+
+/* ---------- carved lintel + garland ---------- */
+
+.arch-crown {
+  position: absolute;
+  left: 50%;
+  bottom: calc(100% - 5px);
+  width: 112%;
+  height: auto;
+  transform: translateX(-50%);
+  z-index: 5;
+  color: var(--gold);
+  pointer-events: none;
+  filter: drop-shadow(0 8px 18px rgba(10, 3, 6, 0.45));
+}
+
+.garland {
+  position: absolute;
+  top: -7px;
+  left: 50%;
+  width: 107%;
+  z-index: 8;
+  transform-origin: 50% 0;
+  pointer-events: none;
+  animation: garland-sway 11s ease-in-out infinite alternate;
+  filter: drop-shadow(0 6px 10px rgba(10, 3, 6, 0.4));
+}
+
+.garland svg {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* ---------- plinth, diyas ---------- */
+
+.plinth {
+  position: absolute;
+  left: 50%;
+  bottom: -19px;
+  transform: translateX(-50%);
+  width: 116%;
+  height: 20px;
+  z-index: 4;
+  background:
+    linear-gradient(180deg, rgba(197, 164, 109, 0.5), rgba(197, 164, 109, 0.08) 28%, rgba(40, 13, 20, 0.9) 30%, rgba(23, 7, 12, 0.95));
+  border-top: 1px solid rgba(226, 205, 165, 0.55);
+  box-shadow: 0 18px 40px -14px rgba(0, 0, 0, 0.6);
+  pointer-events: none;
+}
+
+.plinth::after {
+  content: '';
+  position: absolute;
+  left: 4%;
+  right: 4%;
+  top: 9px;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(226, 205, 165, 0.45), transparent);
+}
+
+.diya {
+  position: absolute;
+  bottom: -52px;
+  z-index: 6;
+  width: clamp(58px, 8.5vw, 86px);
+  aspect-ratio: 1;
+  pointer-events: none;
+  filter: drop-shadow(0 12px 26px rgba(0, 0, 0, 0.45));
+}
+
+.diya--left {
+  left: -13%;
+}
+
+.diya--right {
+  right: -13%;
+}
+
+.diya svg {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.diya__glow {
+  position: absolute;
+  inset: -34%;
+  border-radius: 50%;
+  background: radial-gradient(circle at 50% 38%, rgba(255, 218, 154, 0.34), rgba(197, 132, 65, 0.12) 40%, transparent 68%);
+  filter: blur(5px);
+  animation: diya-glow 4.2s ease-in-out infinite;
+}
+
+.diya__flame {
+  transform-box: fill-box;
+  transform-origin: 50% 90%;
+  animation: diya-flicker 2.8s ease-in-out infinite;
+}
+
+/* ---------- opening control ---------- */
+
+.gate__foot {
+  position: relative;
+  z-index: 10;
+  flex: 0 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: clamp(7px, 1.4vh, 14px);
+  padding-top: clamp(22px, 5vh, 46px);
+  text-align: center;
+}
+
+.gate__flourish {
+  width: clamp(150px, 24vw, 220px);
+  height: auto;
+  color: var(--gold);
+  opacity: 0.62;
+}
+
+.open-button {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 5px;
+  min-height: 48px;
+  padding: 14px clamp(20px, 5vw, 34px) 12px;
+  cursor: pointer;
+  color: var(--ivory);
+  border-radius: 2px;
+  transition:
+    color var(--dur-micro) var(--ease-silk),
+    box-shadow 400ms var(--ease-silk),
+    opacity 300ms ease;
+}
+
+.open-button::before,
+.open-button::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(197, 164, 109, 0.58), transparent);
+  transition: opacity 350ms var(--ease-silk), transform 500ms var(--ease-silk);
+}
+
+.open-button::before {
+  top: 0;
+}
+
+.open-button::after {
+  bottom: 0;
+}
+
+.open-button:hover,
+.open-button:focus-visible {
+  color: var(--gold-pale);
+  box-shadow: inset 0 0 42px rgba(197, 164, 109, 0.07);
+}
+
+.open-button:hover::before,
+.open-button:hover::after,
+.open-button:focus-visible::before,
+.open-button:focus-visible::after {
+  opacity: 1;
+  transform: scaleX(1.03);
+}
+
+.open-button:disabled {
+  cursor: default;
+}
+
+.open-button__label {
+  font-family: var(--font-ceremonial);
+  font-size: clamp(0.62rem, 0.52rem + 0.32vw, 0.76rem);
+  letter-spacing: 0.34em;
+  text-indent: 0.34em;
+  text-transform: uppercase;
+  line-height: 1.5;
+  transition: color 300ms var(--ease-silk);
+}
+
+.open-button__hint {
+  font-family: var(--font-sans);
+  font-size: clamp(0.5rem, 0.46rem + 0.18vw, 0.58rem);
+  font-weight: 300;
+  letter-spacing: 0.32em;
+  text-indent: 0.32em;
+  text-transform: uppercase;
+  color: rgba(244, 235, 221, 0.46);
+}
+
+.is-opening .open-button {
+  opacity: 0.9;
+  color: var(--gold-pale);
+  box-shadow: inset 0 0 48px rgba(197, 164, 109, 0.14);
+}
+
+/* ---------- scene 02 — the reveal ---------- */
+
+.reveal-content {
+  position: absolute;
+  inset: 0;
+  z-index: 3;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: clamp(8px, 1.4vh, 16px);
+  margin: 0 auto;
+  padding:
+    calc(clamp(72px, 10vh, 120px) + env(safe-area-inset-top))
+    clamp(20px, 6vw, 80px)
+    calc(clamp(64px, 9vh, 100px) + env(safe-area-inset-bottom));
+  text-align: center;
+  pointer-events: none;
+  outline: none;
+}
+
+.reveal-item {
+  opacity: 0;
+  transform: translateY(22px);
+  transition:
+    opacity 1.05s var(--ease-silk) var(--delay, 0s),
+    transform 1.15s var(--ease-silk) var(--delay, 0s);
+}
+
+.is-revealed .reveal-item {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.reveal-eyebrow {
+  font-family: var(--font-ceremonial);
+  font-size: clamp(0.56rem, 0.48rem + 0.3vw, 0.72rem);
+  letter-spacing: 0.5em;
+  text-indent: 0.5em;
+  text-transform: uppercase;
+  color: var(--gold-pale);
+  text-shadow: 0 2px 18px rgba(18, 5, 10, 0.8);
+  margin-bottom: clamp(6px, 1.6vh, 18px);
+}
+
+.couple-names {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-weight: 400;
+  color: var(--ivory-bright);
+  text-shadow: 0 4px 44px rgba(18, 5, 10, 0.45);
+}
+
+.couple-names__name {
+  display: block;
+  font-family: var(--font-display);
+  font-size: clamp(3.6rem, 16vw, 8.2rem);
+  line-height: 0.9;
+  letter-spacing: 0.005em;
+}
+
+.couple-names__amp {
+  display: flex;
+  align-items: center;
+  gap: clamp(10px, 2.2vw, 20px);
+  color: var(--gold-pale);
+  padding: clamp(2px, 0.6vh, 8px) 0;
+}
+
+.couple-names__amp-glyph {
+  font-family: var(--font-display);
+  font-style: italic;
+  font-size: clamp(1.7rem, 3.4vw, 2.7rem);
+  line-height: 1;
+  opacity: 0.95;
+}
+
+.couple-names__rule {
+  display: block;
+  width: clamp(30px, 6vw, 64px);
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(226, 205, 165, 0.72));
+}
+
+.couple-names__rule:last-child {
+  transform: scaleX(-1);
+}
+
+.reveal-rule {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  margin-top: clamp(12px, 2.4vh, 26px);
+  color: var(--gold);
+}
+
+.reveal-rule span {
+  width: clamp(38px, 7vw, 76px);
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(197, 164, 109, 0.65));
+}
+
+.reveal-rule span:last-child {
+  transform: scaleX(-1);
+}
+
+.reveal-rule svg {
+  width: 14px;
+  height: 14px;
+}
+
+.reveal-celebration {
+  margin-top: clamp(8px, 1.6vh, 16px);
+  font-family: var(--font-ceremonial);
+  font-size: clamp(0.58rem, 0.5rem + 0.28vw, 0.72rem);
+  letter-spacing: 0.4em;
+  text-indent: 0.4em;
+  text-transform: uppercase;
+  color: var(--gold-pale);
+  text-shadow: 0 2px 20px rgba(18, 5, 10, 0.9);
+}
+
+.reveal-line {
+  max-width: 36rem;
+  margin-top: clamp(6px, 1.4vh, 14px);
+  font-family: var(--font-display);
+  font-size: clamp(1.02rem, 0.96rem + 0.4vw, 1.24rem);
+  line-height: 1.7;
+  letter-spacing: 0.015em;
+  color: rgba(244, 235, 221, 0.94);
+  text-shadow: 0 2px 24px rgba(18, 5, 10, 0.8);
+  text-wrap: balance;
+}
+
+.reveal-cue {
+  margin-top: clamp(10px, 2.6vh, 34px);
+}
+
+.scroll-cue {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 9px;
+  color: rgba(244, 235, 221, 0.8);
+  filter: drop-shadow(0 1px 10px rgba(18, 5, 10, 0.75));
+}
+
+.scroll-cue__label {
+  font-family: var(--font-ceremonial);
+  font-size: 0.52rem;
+  letter-spacing: 0.5em;
+  text-indent: 0.5em;
+  text-transform: uppercase;
+  color: rgba(234, 217, 184, 0.86);
+}
+
+.scroll-cue__line {
+  position: relative;
+  display: block;
+  width: 1px;
+  height: 46px;
+  background: linear-gradient(180deg, rgba(197, 164, 109, 0.6), rgba(197, 164, 109, 0));
+  overflow: hidden;
+}
+
+.scroll-cue__diamond {
+  position: absolute;
+  top: 2px;
+  left: 50%;
+  width: 5px;
+  height: 5px;
+  background: var(--gold-pale);
+  transform: translate(-50%, 0) rotate(45deg);
+  animation: cue-travel 3.2s var(--ease-silk) infinite;
+}
+
+/* ---------- animations ---------- */
+
+@keyframes garland-sway {
+  0% {
+    transform: translateX(-50%) rotate(-0.45deg);
+  }
+  100% {
+    transform: translateX(-50%) rotate(0.45deg);
+  }
+}
+
+@keyframes diya-flicker {
+  0%,
+  100% {
+    transform: scale(1) rotate(-1deg);
+    opacity: 0.95;
+  }
+  32% {
+    transform: scale(1.045, 0.965) rotate(1.2deg);
+    opacity: 1;
+  }
+  64% {
+    transform: scale(0.972, 1.035) rotate(-0.7deg);
+    opacity: 0.9;
+  }
+}
+
+@keyframes diya-glow {
+  0%,
+  100% {
+    opacity: 0.6;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.09);
+  }
+}
+
+@keyframes cue-travel {
+  0% {
+    transform: translate(-50%, 0) rotate(45deg);
+    opacity: 0;
+  }
+  18% {
+    opacity: 1;
+  }
+  76% {
+    opacity: 0.55;
+  }
+  100% {
+    transform: translate(-50%, 36px) rotate(45deg);
+    opacity: 0;
+  }
+}
+
+/* ---------- responsive refinements ---------- */
+
+@media (max-width: 520px) {
+  .gate__corner {
+    width: clamp(120px, 34vw, 190px);
+    opacity: 0.26;
+  }
+
+  .portal {
+    width: min(88vw, calc(56svh * 0.785));
+    margin-top: clamp(14px, 4vh, 40px);
+  }
+
+  .garland {
+    width: 112%;
+    top: -5px;
+  }
+
+  .arch-crown {
+    width: 118%;
+  }
+
+  .diya {
+    width: clamp(48px, 14vw, 64px);
+    bottom: -40px;
+  }
+
+  .diya--left {
+    left: -11%;
+  }
+
+  .diya--right {
+    right: -11%;
+  }
+
+  .reveal-content {
+    gap: 6px;
+    padding-left: 22px;
+    padding-right: 22px;
+  }
+
+  .reveal-line {
+    max-width: 30ch;
+  }
+}
+
+@media (max-height: 740px) and (min-width: 521px) {
+  .gate__lotus {
+    width: 34px;
+  }
+
+  .portal {
+    margin-top: 14px;
+    width: min(70vw, calc(50svh * 0.785), 380px);
+  }
+}
+
+@media (max-height: 700px) {
+  .arch-crown {
+    display: none;
+  }
+
+  .gate__head::after {
+    display: none;
+  }
+
+  .couple-names__name {
+    font-size: clamp(3rem, 13.5vw, 5.6rem);
+  }
+
+  .reveal-content {
+    gap: 4px;
+    padding-top: calc(58px + env(safe-area-inset-top));
+    padding-bottom: calc(48px + env(safe-area-inset-bottom));
+  }
+
+  .reveal-cue {
+    margin-top: 8px;
+  }
+
+  .scroll-cue__line {
+    height: 30px;
+  }
+
+  .eyebrow,
+  .reveal-eyebrow {
+    letter-spacing: 0.4em;
+  }
+}
+
+@media (max-height: 560px) and (orientation: landscape) {
+  .gate__corner,
+  .gate__niche,
+  .gate__blessing {
+    display: none;
+  }
+
+  .gate__inner {
+    flex-direction: row;
+    justify-content: center;
+    gap: clamp(16px, 4vw, 48px);
+    padding-top: calc(10px + env(safe-area-inset-top));
+    padding-bottom: calc(10px + env(safe-area-inset-bottom));
+  }
+
+  .gate__head,
+  .gate__foot {
+    width: min(32vw, 260px);
+    padding-top: 0;
+  }
+
+  .gate__lotus {
+    width: 30px;
+  }
+
+  .gate__greeting {
+    font-size: 0.56rem;
+    letter-spacing: 0.26em;
+  }
+
+  .portal-wrap {
+    flex: 0 0 auto;
+    width: auto;
+    height: 100%;
+  }
+
+  .portal {
+    height: 86%;
+    width: auto;
+    aspect-ratio: 0.785;
+    margin-top: 0;
+  }
+
+  .garland {
+    display: none;
+  }
+
+  .diya {
+    bottom: -34px;
+    width: 48px;
+  }
+
+  .gate__foot {
+    gap: 4px;
+  }
+
+  .gate__flourish {
+    display: none;
+  }
+
+  .open-button {
+    padding: 8px 10px;
+  }
+
+  .open-button__label {
+    font-size: 0.56rem;
+    letter-spacing: 0.2em;
+  }
+
+  .open-button__hint {
+    display: none;
+  }
+
+  .reveal-content {
+    padding-top: 40px;
+    padding-bottom: 40px;
+  }
+
+  .couple-names__name {
+    font-size: clamp(2.6rem, 9vh, 4.2rem);
+  }
+
+  .reveal-line {
+    max-width: 46ch;
+    font-size: 0.92rem;
+  }
+
+  .reveal-cue {
+    display: none;
+  }
+}

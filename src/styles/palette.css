@@ -1,0 +1,38 @@
+:root {
+  /* Core palette */
+  --burgundy: #591d2b;
+  --burgundy-deep: #401420;
+  --burgundy-night: #2b0d15;
+  --burgundy-ink: #210a11;
+  --maroon: #6e2637;
+  --ivory: #f4ebdd;
+  --ivory-bright: #fbf6ec;
+  --ivory-paper: #f6eedf;
+  --ivory-deep: #e8dac4;
+  --gold: #c5a46d;
+  --gold-pale: #e2cda5;
+  --gold-deep: #977744;
+  --green: #68765a;
+  --green-deep: #4b5841;
+  --rose: #b66d73;
+  --rose-deep: #9c545f;
+  --ink: #29201e;
+  --ink-soft: #5c4a43;
+
+  /* Materials */
+  --noise: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='160' height='160' filter='url(%23n)' opacity='0.55'/%3E%3C/svg%3E");
+  --jali: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140' viewBox='0 0 140 140'%3E%3Cg fill='none' stroke='%23C5A46D' stroke-width='0.6'%3E%3Cpath d='M70 8 82 34 108 42 88 66 92 94 70 80 48 94 52 66 32 42 58 34 70 8Z'/%3E%3Ccircle cx='70' cy='56' r='5'/%3E%3Cpath d='M0 70h9M131 70h9M70 0v8M70 132v8'/%3E%3C/g%3E%3C/svg%3E");
+
+  /* Motion */
+  --ease-silk: cubic-bezier(0.22, 0.61, 0.36, 1);
+  --ease-door: cubic-bezier(0.42, 0.01, 0.15, 0.99);
+  --dur-micro: 260ms;
+  --dur-text: 850ms;
+  --dur-scene: 950ms;
+
+  /* Type */
+  --font-display: 'Cormorant Garamond', 'Iowan Old Style', Palatino, Georgia, serif;
+  --font-ceremonial: 'Cinzel', 'Times New Roman', serif;
+  --font-sans: 'DM Sans', 'Helvetica Neue', Arial, sans-serif;
+  --font-hindi: 'Tiro Devanagari Hindi', 'Cormorant Garamond', serif;
+}
