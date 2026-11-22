@@ -6,15 +6,15 @@ import { FlourishDivider } from '../FloralDecorations/FloralDecorations'
 import { Reveal } from '../Shared/Reveal'
 
 const petals = [
-  { left: '6%', delay: '-3s', duration: '27s', size: 10, sway: '44px', spin: '220deg', tone: 'rose' },
-  { left: '18%', delay: '-17s', duration: '33s', size: 7, sway: '30px', spin: '-160deg', tone: 'ivory' },
-  { left: '29%', delay: '-9s', duration: '24s', size: 11, sway: '52px', spin: '300deg', tone: 'rose' },
-  { left: '41%', delay: '-22s', duration: '36s', size: 8, sway: '36px', spin: '180deg', tone: 'rose' },
-  { left: '52%', delay: '-12s', duration: '30s', size: 9, sway: '46px', spin: '-220deg', tone: 'ivory' },
-  { left: '64%', delay: '-5s', duration: '26s', size: 7, sway: '28px', spin: '260deg', tone: 'rose' },
-  { left: '73%', delay: '-19s', duration: '34s', size: 10, sway: '40px', spin: '-120deg', tone: 'rose' },
-  { left: '84%', delay: '-7s', duration: '29s', size: 8, sway: '34px', spin: '200deg', tone: 'ivory' },
-  { left: '93%', delay: '-25s', duration: '38s', size: 9, sway: '48px', spin: '-260deg', tone: 'rose' },
+  { left: '6%', delay: '-3s', duration: '27s', size: 14, sway: '56px', spin: '220deg', tone: 'rose' },
+  { left: '18%', delay: '-17s', duration: '33s', size: 9, sway: '40px', spin: '-160deg', tone: 'ivory' },
+  { left: '29%', delay: '-9s', duration: '24s', size: 15, sway: '64px', spin: '300deg', tone: 'rose' },
+  { left: '41%', delay: '-22s', duration: '36s', size: 10, sway: '46px', spin: '180deg', tone: 'rose' },
+  { left: '52%', delay: '-12s', duration: '30s', size: 12, sway: '58px', spin: '-220deg', tone: 'ivory' },
+  { left: '64%', delay: '-5s', duration: '26s', size: 9, sway: '38px', spin: '260deg', tone: 'rose' },
+  { left: '73%', delay: '-19s', duration: '34s', size: 14, sway: '52px', spin: '-120deg', tone: 'rose' },
+  { left: '84%', delay: '-7s', duration: '29s', size: 11, sway: '44px', spin: '200deg', tone: 'ivory' },
+  { left: '93%', delay: '-25s', duration: '38s', size: 12, sway: '60px', spin: '-260deg', tone: 'rose' },
 ]
 
 function petalStyle(petal: (typeof petals)[number]): CSSProperties {
@@ -36,7 +36,7 @@ export function RomanticGarden() {
     target: sectionRef,
     offset: ['start end', 'end start'],
   })
-  const artY = useTransform(scrollYProgress, [0, 1], ['-3.2%', '3.2%'])
+  const artY = useTransform(scrollYProgress, [0, 1], ['-6.5%', '6.5%'])
 
   return (
     <section
@@ -73,22 +73,22 @@ export function RomanticGarden() {
       </div>
 
       <div className="interlude__content">
-        <Reveal className="interlude__ornament" y={12}>
+        <Reveal className="interlude__ornament" y={28}>
           <span className="interlude__rule" />
           <span className="interlude__diamond" />
           <span className="interlude__rule" />
         </Reveal>
-        <Reveal delay={0.06} y={22}>
+        <Reveal delay={0.06} y={46}>
           <p className="interlude__eyebrow">{invitation.interlude.subline}</p>
         </Reveal>
-        <Reveal delay={0.12} y={30}>
+        <Reveal delay={0.12} y={64}>
           <h2 id="interlude-heading" className="interlude__line" aria-label={invitation.interlude.line}>
             {invitation.interlude.lineParts.map((part) => (
               <span key={part}>{part}</span>
             ))}
           </h2>
         </Reveal>
-        <Reveal className="interlude__divider" delay={0.2} y={14}>
+        <Reveal className="interlude__divider" delay={0.2} y={34}>
           <FlourishDivider />
         </Reveal>
       </div>

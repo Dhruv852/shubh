@@ -21,26 +21,26 @@ export function WeddingFinale() {
       <div className="finale__scrim" aria-hidden="true" />
 
       <div className="finale__content">
-        <Reveal className="finale__monogram" y={12}>
+        <Reveal className="finale__monogram" y={28}>
           <LotusMark />
         </Reveal>
-        <Reveal delay={0.05} y={18}>
+        <Reveal delay={0.05} y={42}>
           <p className="finale__eyebrow">{invitation.finale.eyebrow}</p>
         </Reveal>
-        <Reveal delay={0.12} y={26}>
+        <Reveal delay={0.12} y={64}>
           <h2 id="finale-heading" className="finale__names">
             <span>{invitation.couple.first}</span>
             <i aria-hidden="true">&amp;</i>
             <span>{invitation.couple.second}</span>
           </h2>
         </Reveal>
-        <Reveal className="finale__divider" delay={0.18} y={12}>
+        <Reveal className="finale__divider" delay={0.18} y={30}>
           <FlourishDivider />
         </Reveal>
-        <Reveal className="finale__seal" delay={0.24} y={16}>
+        <Reveal className="finale__seal" delay={0.24} y={36}>
           <Monogram />
         </Reveal>
-        <Reveal className="finale__coda" delay={0.3} y={12}>
+        <Reveal className="finale__coda" delay={0.3} y={28}>
           <span>{invitation.finale.seal}</span>
         </Reveal>
       </div>

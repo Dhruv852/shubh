@@ -20,7 +20,7 @@ export function PalaceEntrance({ stage, reduced, onOpen }: Props) {
   const revealRef = useRef<HTMLDivElement>(null)
 
   const doorTransition = {
-    duration: reduced ? 0.35 : 2.05,
+    duration: reduced ? 0.35 : 2.25,
     delay: reduced ? 0 : 0.08,
     ease: doorEase,
   }
@@ -93,7 +93,7 @@ export function PalaceEntrance({ stage, reduced, onOpen }: Props) {
                 <motion.div
                   className="door door--left"
                   initial={false}
-                  animate={open ? { rotateY: -86 } : { rotateY: 0 }}
+                  animate={open ? { rotateY: -88 } : { rotateY: 0 }}
                   transition={doorTransition}
                 >
                   <DoorLeaf />
@@ -101,7 +101,7 @@ export function PalaceEntrance({ stage, reduced, onOpen }: Props) {
                 <motion.div
                   className="door door--right"
                   initial={false}
-                  animate={open ? { rotateY: 86 } : { rotateY: 0 }}
+                  animate={open ? { rotateY: 88 } : { rotateY: 0 }}
                   transition={{ ...doorTransition, delay: (doorTransition.delay ?? 0) + 0.035 }}
                 >
                   <DoorLeaf />
@@ -126,10 +126,27 @@ export function PalaceEntrance({ stage, reduced, onOpen }: Props) {
               onClick={onOpen}
               disabled={stage !== 'closed'}
             >
-              <span className="open-button__label">
-                {stage === 'closed' ? invitation.entrance.control : invitation.entrance.opening}
+              <span className="open-button__icon" aria-hidden="true">
+                <svg viewBox="0 0 26 26" fill="none" focusable="false">
+                  <path
+                    d="M5 22V9.5C5 6.4 8.1 3.8 13 3.8s8 2.6 8 5.7V22"
+                    stroke="currentColor"
+                    strokeWidth="1.1"
+                  />
+                  <path d="M13 4v18" stroke="currentColor" strokeWidth=".8" opacity=".65" />
+                  <path d="M3.6 22h18.8" stroke="currentColor" strokeWidth=".9" strokeLinecap="round" opacity=".8" />
+                  <circle cx="10.4" cy="13.2" r=".95" fill="currentColor" />
+                  <circle cx="15.6" cy="13.2" r=".95" fill="currentColor" />
+                </svg>
               </span>
-              <span className="open-button__hint">{invitation.entrance.hint}</span>
+              <span className="open-button__text">
+                <span className="open-button__label">
+                  {stage === 'closed' ? invitation.entrance.control : invitation.entrance.opening}
+                </span>
+                <span className="open-button__hint">
+                  {stage === 'closed' ? invitation.entrance.hint : invitation.entrance.openingHint}
+                </span>
+              </span>
             </button>
           </footer>
         </div>

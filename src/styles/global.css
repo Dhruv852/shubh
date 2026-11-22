@@ -93,17 +93,6 @@ main {
   scroll-margin-top: 0;
 }
 
-/* Decorative motion can be paused by the visitor. */
-.is-paused .diya__flame,
-.is-paused .diya__glow,
-.is-paused .garland,
-.is-paused .petal,
-.is-paused .scroll-cue__diamond,
-.is-paused .interlude__shimmer,
-.is-paused .open-button::after {
-  animation-play-state: paused !important;
-}
-
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;

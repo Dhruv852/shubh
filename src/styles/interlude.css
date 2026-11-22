@@ -13,7 +13,7 @@
 
 .interlude__art {
   position: absolute;
-  inset: -5% 0;
+  inset: -8% 0;
   will-change: transform;
 }
 
@@ -77,7 +77,7 @@
   animation-timing-function: linear;
   animation-iteration-count: infinite;
   will-change: transform, opacity;
-  box-shadow: 0 0 8px rgba(43, 13, 21, 0.22);
+  box-shadow: 0 0 10px rgba(43, 13, 21, 0.28);
 }
 
 .interlude__frame {

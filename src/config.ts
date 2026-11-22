@@ -8,8 +8,9 @@ export const invitation = {
     blessing: 'शुभ विवाह',
     greeting: 'You are cordially invited',
     control: 'Open the invitation',
-    hint: 'A digital invitation',
+    hint: 'Tap to open the doors',
     opening: 'Opening the invitation',
+    openingHint: 'The doors are opening',
   },
   reveal: {
     kicker: 'The Royal Garden',
@@ -38,14 +39,10 @@ export const invitation = {
     seal: 'The Royal Garden',
   },
   audio: {
-    label: 'Ambient music',
     // Locally hosted bansuri raga, supplied for this invitation. Confirm the
     // licence covers your publication before sharing the site publicly.
     src: '/assets/audio/bansuri-raga.mp3',
     volume: 0.55,
-    on: 'Music on',
-    off: 'Music off',
-    unavailable: 'Music unavailable',
   },
 } as const
 

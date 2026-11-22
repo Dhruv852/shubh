@@ -1,18 +1,26 @@
 import { useEffect, useState } from 'react'
 import { useReducedMotion } from 'framer-motion'
 import type { Stage } from './lib/assets'
+import { startBackgroundMusic } from './lib/music'
 import { PalaceEntrance } from './components/PalaceEntrance/PalaceEntrance'
 import { InvitationLetter } from './components/InvitationLetter/InvitationLetter'
 import { RomanticGarden } from './components/RomanticGarden/RomanticGarden'
 import { WeddingFinale } from './components/WeddingFinale/WeddingFinale'
-import { MusicControl } from './components/MusicControl/MusicControl'
-import { MotionControl } from './components/MotionControl/MotionControl'
 
 export default function App() {
   const [stage, setStage] = useState<Stage>('closed')
-  const [motionPaused, setMotionPaused] = useState(false)
   const reducedPref = useReducedMotion()
   const reduced = reducedPref === true
+
+  useEffect(() => {
+    const start = () => startBackgroundMusic()
+    window.addEventListener('pointerdown', start, { once: true, passive: true })
+    window.addEventListener('keydown', start, { once: true })
+    return () => {
+      window.removeEventListener('pointerdown', start)
+      window.removeEventListener('keydown', start)
+    }
+  }, [])
 
   useEffect(() => {
     const root = document.documentElement
@@ -33,11 +41,10 @@ export default function App() {
     return () => window.clearTimeout(timer)
   }, [stage, reduced])
 
-  useEffect(() => {
-    const root = document.documentElement
-    root.classList.toggle('is-paused', motionPaused)
-    return () => root.classList.remove('is-paused')
-  }, [motionPaused])
+  const openInvitation = () => {
+    startBackgroundMusic()
+    setStage((current) => (current === 'closed' ? 'opening' : current))
+  }
 
   return (
     <div className="experience">
@@ -46,20 +53,11 @@ export default function App() {
       </h1>
 
       <main>
-        <PalaceEntrance
-          stage={stage}
-          reduced={reduced}
-          onOpen={() => setStage((current) => (current === 'closed' ? 'opening' : current))}
-        />
+        <PalaceEntrance stage={stage} reduced={reduced} onOpen={openInvitation} />
         <InvitationLetter />
         <RomanticGarden />
         <WeddingFinale />
       </main>
-
-      <MusicControl />
-      {!reduced && (
-        <MotionControl paused={motionPaused} onToggle={() => setMotionPaused((p) => !p)} />
-      )}
     </div>
   )
 }

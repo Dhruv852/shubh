@@ -8,7 +8,6 @@ import './styles/entrance.css'
 import './styles/letter.css'
 import './styles/interlude.css'
 import './styles/finale.css'
-import './styles/controls.css'
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>

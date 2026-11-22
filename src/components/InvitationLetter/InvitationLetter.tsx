@@ -9,11 +9,11 @@ export function InvitationLetter() {
       <FloralCorner className="letter-scene__pressed letter-scene__pressed--left" />
       <FloralCorner className="letter-scene__pressed letter-scene__pressed--right" />
 
-      <Reveal className="letter-scene__label" y={16}>
+      <Reveal className="letter-scene__label" y={34}>
         <span className="eyebrow eyebrow--ink">{invitation.letter.eyebrow}</span>
       </Reveal>
 
-      <Reveal className="letter" delay={0.08}>
+      <Reveal className="letter" delay={0.08} y={64}>
         <div className="letter__paper">
           <div className="letter__border" aria-hidden="true" />
           <div className="letter__corners" aria-hidden="true">
